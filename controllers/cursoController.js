@@ -11,13 +11,11 @@ function listar(req,res){
             });
         }
     });
-    
 }
 
 function crear(req,res){
     let {name,description,price} = req.body
     let dato = new model;
-
     dato.nombre = name;
     dato.descripcion = description;
     dato.precio = price;
@@ -35,7 +33,7 @@ function crear(req,res){
 
 function editar(req,res){
     let {name,description,price} = req.body
-    let val_id = req.body.id;
+    let val_id = req.params.id;
     let datos = {
         nombre: name, 
         descripcion: description,
@@ -69,7 +67,6 @@ function mostrar(req,res){
 }
 
 function eliminar(req,res){
-    
     let val_id = req.params.id;
     model.deleteOne({_id:val_id},function(err, result){
         if(err){

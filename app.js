@@ -1,11 +1,13 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const routes = require('./routes');
 let mongoose = require("mongoose");
-require("dotenv").config();
 
-
-mongoose.connect(process.env.MONGO_URI)
+let url = process.env.MONGO_URI
+console.log(url)
+mongoose.connect(url)
 .then(()=>{
     console.log("Conectados a la base de datos");
 })
@@ -13,7 +15,6 @@ mongoose.connect(process.env.MONGO_URI)
     console.log("Error al conectar la base de datos",err);
     proccess.exit();
 });
-
 
 app.use(express.json());
 app.get("/", (req, res) => {
